@@ -21,14 +21,13 @@ using namespace std;
 //                   2-D Array Dimensions
 
 //Function Prototypes
-int gameSpn();
 void gameOn();
 
 //Execution Begins Here
 
 int main(int argc, char** argv) {
     //Setting random seed
-    srand(static_cast<unsigned int> (time(0)));
+    srand(static_cast<unsigned int> (time(0))); //Generate random seed
     
     //Pull previous stats
     ifstream gmStats;
@@ -155,7 +154,7 @@ void gameOn() {
     bnkRoll=0;
     do {                    //Switch case for bank menu
         cin>>bnkMenu;
-        switch (bnkMenu) {
+        switch (bnkMenu) {  //Case corresponds to bankroll amount
             case 1:
                 bnkRoll = 1000;
                 cout<<endl << "Bankroll set to $1,000."<<endl<<endl;
@@ -176,7 +175,7 @@ void gameOn() {
                 cout<<endl<<"Invalid input, please try again"<<endl;
                 break;
         }
-    } while (bnkMenu < 1 || bnkMenu > 4);
+    } while (bnkMenu < 1 || bnkMenu > 4);   //Keep menu open until valid input
 
     bool endgame = 0;   //Check if game is currently being played
     
@@ -313,7 +312,7 @@ void gameOn() {
                     }      
                     break;
             
-                case 4:
+                case 4: //Exiting game leads to statistics update ofstream and exit
                     cout<<endl << "Exiting Game." << endl<<endl;
                     endgame = 1;
                     break;
@@ -373,7 +372,6 @@ void gameOn() {
         if (endgame == 0){
             
     cout<<"At this time, we are entering the pay out phase."<<endl;
-        //Bets besides zeros
         if (spin>0&&spin<=36){
             if (spin%2==0&&even==true){ //Check for even bets
                 cout<<endl<<"Congratulations! "<<spin<<" is an Even number!"<<endl
@@ -383,7 +381,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*2);
                 wins++;
                 totGame+=1;
@@ -397,7 +395,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*2);
                 wins++;
                 totGame++;
@@ -416,7 +414,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*2);
                 wins++;
                 totGame++;
@@ -436,7 +434,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*2);
                 wins++;
                 totGame++;
@@ -452,7 +450,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*2);
                 wins++;
                 totGame++;
@@ -468,7 +466,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*2);
                 wins++;
                 totGame++;
@@ -485,7 +483,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*3);
                 wins++;
                 totGame++;
@@ -501,7 +499,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*3);
                 wins++;
                 totGame++;
@@ -517,7 +515,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*3);
                 wins++;
                 totGame++;
@@ -535,7 +533,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*36);
                 wins++;
                 totGame++;
@@ -551,7 +549,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*37);
                 wins++;
                 totGame++;
@@ -567,7 +565,7 @@ void gameOn() {
                 spin=0;
                 won='W';
                 
-                //Statistics input
+                //Statistics update
                 earnings+=(betAmt*37);
                 wins++;
                 totGame++;
@@ -578,6 +576,7 @@ void gameOn() {
                 cout<<"Sorry, you lose this round."<<endl;
                 earnings-=betAmt;
                 betAmt=0;   //Must reset betAmt after gathering statistics
+                //Statistics update
                 totGame++;
                 losses++;
             }
@@ -620,7 +619,7 @@ void gameOn() {
         if (totGame>0){
         gmStats<<"You have won "<<winPct<<"% of the games played."<<endl;
         }
-        gmStats.close();
+        gmStats.close();    //Close gamestats file
         
     }while (endgame == 0);
 }
