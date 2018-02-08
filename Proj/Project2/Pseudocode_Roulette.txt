@@ -1,0 +1,124 @@
+Pseudocode for Roulette by Andrew Joson
+--------------------------------------------
+File:   main.cpp
+ * Author: Andrew Joson
+ * Created on January 29, 2018, 9:00 PM
+ * Purpose: Create roulette game
+
+// System Libraries
+#include <iostream> //IO library
+#include <cstdlib>  //For sRand function
+#include <ctime>    //Time library for srand function
+#include <iomanip>  //formatting library
+#include <cmath>    //Math library
+#include <string>   //String library
+#include <fstream>  //File library
+
+using namespace std;
+
+//Function Prototypes
+void gameOn();
+
+int main(int argc, char** argv) {
+//Generate random seed
+
+//Pull previous stats
+
+//Game menu
+//Switch case for main menu
+//1. gameOn(), 2. Rules, 3. Payout Odds, 4. Previous Statistics, 5. Exit Game
+
+1. gameOn();
+
+//Exit stage right!
+    return 0;
+
+void gameOn() {
+    ofstream gmStats;           //Write to file //
+    unsigned int bnkRoll;       //Int for dollars in bank roll
+    int betAmt;                 //Int for amount placed on bet
+    int strBet;                 //Number placed for straight bet
+    int spin;                   //Value of roulette wheel spin
+    
+    //Variables to represent statistics
+    int wins=0;         //Number of wins
+    int losses=0;       //Number of losses
+    int totGame=0;      //Total number of games
+    int earnings=0;     //Total earnings
+    int ecPlac=0;       //Number of even chance bets made
+    int dozPlac=0;      //Number of dozens bets made
+    int strPlac=0;      //Number of straight bets made
+    float winPct=0.00f; //Win percentage
+    
+    char    won = 'L'; //Win flag
+    bool    red = false, //Even chance flags
+            black = false,
+            even = false,
+            odd = false,
+            high = false,
+            low = false;
+
+    bool    doz = false, //Dozens flags
+            doz2 = false,
+            doz3 = false;
+
+    //Output to user the menu options
+
+//Determining bankroll. Only occurs once.
+//Switch case for bank menu
+//Case corresponds to bankroll amount
+//Keep menu open until valid input
+//Check if game is currently being played
+
+//Enter betting phase of game
+    //Output to user options to bet
+
+//Menu for different bets to be placed
+//Even Chances menu
+	//Catch invalid entries
+//Dozens menu
+	//Catch invalid entries
+//Straight bets menu
+//Switch case for straight bet menu
+	//1. User input straight bet number limited to 1-36
+	//2. Output Zero but set strBet to 37
+	//3. Output Double-Zero but set strBet to 38	
+		//Catch invalid entries
+
+//Exiting game leads to statistics update ofstream and exit
+
+//Betting phase
+//Check if game exited or not
+//Input bet amount
+//Do not allow bets below table minimum
+//Do not allow bets larger than bank roll
+
+//Subtract bet amount from bank roll
+
+//Output to user the game is approaching the spin phase
+
+//RNG for spin value
+//Modulus the rand to 1-99, only accept if integer is 1-38 (37=zero, 38=doublezero)
+
+//Pay out if win, consolation if loss 
+
+//Check for even bets
+	//Must reset betAmt after gathering statistics
+//Check for odd bets
+	//Must reset betAmt after gathering statistics
+
+//Reset win flag for next round
+
+winPct=(static_cast<float>(wins)/totGame)*100;
+
+float oddsRpt=0.0263157;        
+//1/38 for stats odds of repeat (could not use 1/38 in power function)
+
+float posble=pow(oddsRpt,(totGame-1));    
+//1/38 to a power for odds of repeat stats
+
+short popular=0;                        
+//Used to determine what popular bet to display
+//Save statistics of game for main menu on next run of the game
+
+//Game will continue to loop until exit game is chosen from bet menu, thereby updating endgame=1, continuing the main function with a terminus of return 0;
