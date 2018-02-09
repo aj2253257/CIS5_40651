@@ -21,10 +21,11 @@ using namespace std;
 //                   2-D Array Dimensions
 
 //Function Prototypes
-void mainMenu();
-void gameOn(short[],short[]);
-int gameSpn(bool);
-bool winner(int,int);
+void mainMenu();                //Main menu of game
+void gameOn(short[],short[]);   //Primary game function
+int gameSpn(bool);              //Return value of spin from 1-38
+bool gameOn(int,int);           //Demonstrating overloading function names
+                                //      actual purpose for game statistics
 
 //Execution Begins Here
 
@@ -69,7 +70,7 @@ int gameSpn(bool endgame=0){
 }
 
 //Flag to determine winning statement in stats
-bool winner(int win,int lose){
+bool gameOn(int win,int lose){
     if (win>lose)
         return true;
     else 
@@ -147,7 +148,7 @@ void mainMenu(){
                 
                 break;
             case 5: 
-                exit(1);
+                exit(0);
                 break;
 
         }
@@ -407,7 +408,9 @@ void gameOn(short reds[], short blacks[]) {
     }
  
     //Enter spin phase, return value
-        spin=gameSpn(endgame);
+    if (endgame==0){
+        spin=gameSpn(0);
+    }
         
     //Pay out if win, consolation if loss 
         if (endgame == 0){
@@ -627,7 +630,7 @@ void gameOn(short reds[], short blacks[]) {
         short popular=0;                        //Used to determine what popular bet to display
         //Save statistics of game for main menu on next run of the game
         
-        winner(wins,losses);
+        gameOn(wins,losses);
         
         gmStats.open("gamestats.dat");
         gmStats<<"You have played "<<totGame<<" games."<<endl;
@@ -661,7 +664,7 @@ void gameOn(short reds[], short blacks[]) {
         if (totGame>0){
         gmStats<<"You have won "<<winPct<<"% of the games played."<<endl;
         }
-        if ((winner(wins,losses)=true)&&earnings>0){
+        if ((gameOn(wins,losses)==true)&&earnings>0){
             gmStats<<"You are beating the casino, having won more than you have lost!"<<endl;
         }
         gmStats.close();    //Close gamestats file
